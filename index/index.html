@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Летающая птичка</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            background: linear-gradient(to bottom, #87CEEB, #E0F7FA);
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+        }
+        
+        .container {
+            text-align: center;
+            padding: 20px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        h1 {
+            color: #333;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        
+        .bird {
+            position: absolute;
+            font-size: 40px;
+            animation: fly 15s infinite;
+            z-index: 1;
+        }
+        
+        @keyframes fly {
+            0% {
+                top: 20%;
+                left: 5%;
+                transform: rotate(0deg);
+            }
+            25% {
+                top: 70%;
+                left: 80%;
+                transform: rotate(30deg);
+            }
+            50% {
+                top: 30%;
+                left: 60%;
+                transform: rotate(-20deg);
+            }
+            75% {
+                top: 80%;
+                left: 30%;
+                transform: rotate(10deg);
+            }
+            100% {
+                top: 20%;
+                left: 5%;
+                transform: rotate(0deg);
+            }
+        }
+        
+        .cloud {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            opacity: 0.8;
+        }
+        
+        .cloud:before, .cloud:after {
+            content: '';
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+        }
+        
+        .cloud1 {
+            width: 100px;
+            height: 60px;
+            top: 20%;
+            left: 10%;
+            animation: moveCloud 25s infinite linear;
+        }
+        
+        .cloud1:before {
+            width: 50px;
+            height: 50px;
+            top: -20px;
+            left: 10px;
+        }
+        
+        .cloud1:after {
+            width: 70px;
+            height: 70px;
+            top: -30px;
+            right: 10px;
+        }
+        
+        .cloud2 {
+            width: 120px;
+            height: 70px;
+            top: 40%;
+            right: 10%;
+            animation: moveCloud 35s infinite linear;
+        }
+        
+        .cloud2:before {
+            width: 60px;
+            height: 60px;
+            top: -20px;
+            left: 15px;
+        }
+        
+        .cloud2:after {
+            width: 80px;
+            height: 80px;
+            top: -30px;
+            right: 15px;
+        }
+        
+        @keyframes moveCloud {
+            0% {
+                transform: translateX(0);
+            }
+            50% {
+                transform: translateX(50px);
+            }
+            100% {
+                transform: translateX(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Добро пожаловать на сайт с летающей птичкой!</h1>
+        <p>Наблюдайте, как птичка летает по экрану</p>
+    </div>
+    
+    <div class="bird">🐦</div>
+    
+    <div class="cloud cloud1"></div>
+    <div class="cloud cloud2"></div>
+
+    <script>
+        // Добавляем несколько птичек для большего интереса
+        function createBird() {
+            const bird = document.createElement('div');
+            bird.className = 'bird';
+            bird.innerHTML = '🐦';
+            bird.style.fontSize = (20 + Math.random() * 30) + 'px';
+            
+            // Случайная начальная позиция
+            bird.style.top = Math.random() * 80 + 10 + '%';
+            bird.style.left = Math.random() * 80 + 10 + '%';
+            
+            // Случайная длительность анимации
+            bird.style.animationDuration = (10 + Math.random() * 20) + 's';
+            
+            document.body.appendChild(bird);
+        }
+        
+        // Создаем несколько птичек
+        for (let i = 0; i < 3; i++) {
+            createBird();
+        }
+    </script>
+</body>
+</html>
